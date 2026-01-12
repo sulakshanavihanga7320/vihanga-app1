@@ -9,6 +9,7 @@ export default {
             colors: {
                 dark: {
                     900: '#0a0a0a',
+                    950: '#050505',
                     800: '#171717',
                     700: '#262626',
                 },
@@ -21,6 +22,16 @@ export default {
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
+            },
+            backgroundImage: {
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            },
+            backdropBlur: {
+                xs: '2px',
+            },
+            animation: {
+                'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             }
         },
     },
