@@ -1,12 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { User, Sparkles, Terminal, Cpu } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
 
 const About = () => {
     const { content } = useSiteContent();
+    const [userImage, setUserImage] = useState(null);
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    useEffect(() => {
+        try {
+            const userProfile = localStorage.getItem('userProfile');
+            if (userProfile) {
+                const profile = JSON.parse(userProfile);
+                if (profile.avatarUrl) {
+                    setUserImage(profile.avatarUrl);
+                }
+            }
+        } catch (err) {
+            console.log('Could not load user image');
+        }
+    }, []);
 
     return (
         <section id="about" className="py-32 relative overflow-hidden bg-neutral-950">
@@ -30,7 +45,7 @@ const About = () => {
                             className="relative z-10 aspect-square rounded-[3rem] bg-neutral-900 overflow-hidden border border-white/10 group-hover:border-indigo-500/50 transition-all duration-700 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]"
                         >
                             <img
-                                src={content.about.image}
+                                src={userImage || content.about.image}
                                 alt="Profile"
                                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                             />
