@@ -222,14 +222,3 @@ const UserSignup = () => {
 };
 
 export default UserSignup;
-                    Already have an account?{' '}
-                    <Link to="/login" className="text-indigo-400 hover:text-indigo-300 font-medium">
-                        Log in
-                    </Link>
-                </p>
-            </div>
-        </div>
-    );
-};
-
-export default UserSignup;

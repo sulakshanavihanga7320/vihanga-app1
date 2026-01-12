@@ -149,29 +149,3 @@ const UserLogin = () => {
 };
 
 export default UserLogin;
-
-                    <div>
-                        <label className="block text-[11px] font-bold uppercase text-neutral-400 mb-1.5 tracking-[0.2em]">Password</label>
-                        <div className="relative">
-                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500" size={18} />
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-black/40 border border-neutral-800 text-white pl-12 pr-4 py-3 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 transition-colors text-sm placeholder:text-neutral-600"
-                                placeholder="password123"
-                            />
-                        </div>
-                    </div>
-
-                    <button className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-indigo-900/40 flex items-center justify-center gap-2 mt-4 text-xs uppercase tracking-[0.22em]">
-                        <span>Login</span>
-                        <ArrowRight size={16} />
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
-};
-
-export default UserLogin;
