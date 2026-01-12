@@ -21,43 +21,109 @@ const Hero = () => {
     );
 
     return (
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-neutral-950">
-            {/* Interactive Background (Stable 3D Depth) */}
+        <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-black">
+            {/* Mesh Gradient Background */}
+            <div className="mesh-gradient" />
+
+            {/* Interactive Background */}
             <InteractiveBackground />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    <div className="flex flex-col items-center mb-6">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4 backdrop-blur-sm">
-                            {new Date().getHours() < 12 ? 'Good Morning' : new Date().getHours() < 17 ? 'Good Afternoon' : 'Good Evening'} • Available for freelance
-                        </span>
-                    </div>
+                    {/* Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
+                        className="inline-block mb-8"
+                    >
+                        <div className="glass-card px-6 py-3 inline-block">
+                            <span className="text-sm font-outfit font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                                ✨ Welcome to my portfolio
+                            </span>
+                        </div>
+                    </motion.div>
 
-                    <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-indigo-200">
+                    {/* Main Heading */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8 }}
+                        className="text-6xl md:text-8xl font-outfit font-bold tracking-tighter mb-8 gradient-text"
+                    >
                         {t('hero.title', content.hero.title)}
-                    </h1>
+                    </motion.h1>
 
-                    <p className="text-xl md:text-2xl text-neutral-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    {/* Subtitle */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="text-lg md:text-xl text-neutral-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+                    >
                         {t('hero.subtitle', content.hero.subtitle)}
-                    </p>
+                    </motion.p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    {/* CTA Buttons */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                        className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+                    >
                         <motion.a
                             href="#projects"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-full font-semibold transition-all shadow-lg shadow-indigo-600/25 flex items-center gap-2"
+                            className="glass-card-blue px-8 py-4 rounded-xl font-outfit font-bold text-white flex items-center gap-3 group glow-blue"
                         >
-                            {t('hero.cta', content.hero.cta)} <ArrowRight size={20} />
+                            {t('hero.cta', content.hero.cta)}
+                            <motion.span
+                                group-hover={{ x: 5 }}
+                                transition={{ type: "spring" }}
+                            >
+                                <ArrowRight size={20} />
+                            </motion.span>
                         </motion.a>
 
                         <motion.a
                             href="#contact"
                             whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="glass-card px-8 py-4 rounded-xl font-outfit font-bold text-white"
+                        >
+                            {t('hero.contactButton', content.hero.contactButton)}
+                        </motion.a>
+                    </motion.div>
+
+                    {/* Floating Scroll Indicator */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8, duration: 0.6 }}
+                        className="flex items-center justify-center gap-2"
+                    >
+                        <span className="text-sm text-neutral-500">Scroll to explore</span>
+                        <motion.div
+                            animate={{ y: [0, 8, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                            className="w-6 h-10 border border-neutral-700 rounded-full flex items-center justify-center"
+                        >
+                            <motion.div
+                                animate={{ y: [0, 4, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                                className="w-1 h-2 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
+                            />
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
+            </div>
+        </section>
+    );
                             whileTap={{ scale: 0.95 }}
                             className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full font-semibold transition-all backdrop-blur-sm"
                         >

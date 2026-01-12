@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sparkles, Terminal, Search, Globe, User, LogOut, ArrowRight } from 'lucide-react';
+import { Menu, X, Sparkles, User, LogOut, ArrowRight } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteContent } from '../context/SiteContentContext';
@@ -7,8 +7,6 @@ import { useSiteContent } from '../context/SiteContentContext';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [hoveredLink, setHoveredLink] = useState(null);
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
     const location = useLocation();
     const navigate = useNavigate();
     const { language, setLanguage, t } = useSiteContent();
@@ -30,20 +28,6 @@ const Navbar = () => {
         };
         window.addEventListener('storage', handleStorage);
         return () => window.removeEventListener('storage', handleStorage);
-    }, []);
-
-    // Online/Offline Detection
-    useEffect(() => {
-        const handleOnline = () => setIsOnline(true);
-        const handleOffline = () => setIsOnline(false);
-        
-        window.addEventListener('online', handleOnline);
-        window.addEventListener('offline', handleOffline);
-        
-        return () => {
-            window.removeEventListener('online', handleOnline);
-            window.removeEventListener('offline', handleOffline);
-        };
     }, []);
 
     const handleLogout = () => {
@@ -74,10 +58,12 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: t('navbar.home'), href: '#home', icon: '🏠' },
-        { name: t('navbar.about'), href: '#about', icon: '👨‍💻' },
-        { name: t('navbar.skills'), href: '#skills', icon: '⚡' },
-        { name: t('navbar.projects'), href: '#projects', icon: '🚀' },
+        { name: t('navbar.home'), href: '#home' },
+        { name: t('navbar.about'), href: '#about' },
+        { name: t('navbar.skills'), href: '#skills' },
+        { name: t('navbar.projects'), href: '#projects' },
+        { name: t('navbar.contact'), href: '#contact' },
+    ];
         { name: t('navbar.store'), href: '/store', icon: '🛍️' },
         { name: t('navbar.lessons'), href: '/lessons', icon: '📖' },
         { name: t('navbar.live'), href: '/live', icon: '🔴' },
